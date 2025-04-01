@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Робота з таблицею пального без сервера
+    // Робота з таблицею пального
     const fuelTable = document.getElementById("fuel-table")?.getElementsByTagName("tbody")[0];
     const addFuelButton = document.getElementById("add-fuel");
 

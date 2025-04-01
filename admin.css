@@ -14,7 +14,6 @@ body {
     padding-bottom: 50px;
 }
 
-/* Заголовок */
 h1 {
     color: #ffcc00;
     text-transform: uppercase;
@@ -22,7 +21,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Стилі для таблиці */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -42,7 +40,6 @@ th {
     font-weight: bold;
 }
 
-/* Поля, що можна редагувати */
 .editable {
     cursor: pointer;
     background: #444;
@@ -52,7 +49,6 @@ th {
     background: #555;
 }
 
-/* Кнопки */
 button {
     background: #ffcc00;
     color: black;
@@ -67,7 +63,6 @@ button:hover {
     background: #ffdb4d;
 }
 
-/* Кнопка додавання нового запису */
 .add-btn {
     background-color: #ffdb4d;
     color: white;
@@ -81,7 +76,6 @@ button:hover {
 
 
 
-/* Для адаптації на мобільних пристроях */
 @media (max-width: 768px) {
     .container {
         max-width: 95%;

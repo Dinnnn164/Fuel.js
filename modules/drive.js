@@ -1,77 +1,79 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const fuelPrices = {
-        "95": 50,
-        "92": 47,
-        "diesel": 45,
-        "gas": 30
-    };
+document.addEventListener("DOMContentLoaded", async () => {
+    const fuelTypeSelect = document.getElementById("fuelType");
+    const fuelLitersInput = document.getElementById("fuelLiters");
+    const totalPriceSpan = document.getElementById("totalPrice");
+    const addToCartBtn = document.getElementById("addToCartBtn");
+    const cartList = document.querySelector(".cart-container ul");
+    const cartTotalSpan = document.getElementById("cartTotal");
+    const clearCartBtn = document.getElementById("clearCartBtn");
+    const burgerMenu = document.querySelector(".burger-menu");
+    const cartContainer = document.querySelector(".cart-container");
+    let fuelData = [];
+    let cart = [];
 
-    const services = [
-        { name: "Мийка авто", price: 100 },
-        { name: "Перевірка шин", price: 50 },
-        { name: "Долив масла", price: 80 }
-    ];
+    try {
+        const response = await fetch("/data.json");
+        fuelData = await response.json();
+        populateFuelOptions();
+    } catch (error) {
+        console.error("Помилка завантаження даних:", error);
+    }
 
-    const fuelTypeSelect = document.getElementById("fuel-type");
-    const fuelAmountInput = document.getElementById("fuel-amount");
-    const calculatePriceButton = document.getElementById("calculate-price");
-    const totalPriceDisplay = document.getElementById("total-price");
-    const addToCartButton = document.getElementById("add-to-cart");
-    const cartItemsList = document.getElementById("cart-items");
-    const serviceList = document.getElementById("service-list");
-
-    function updateServiceList() {
-        serviceList.innerHTML = "";
-        services.forEach((service, index) => {
-            const listItem = document.createElement("li");
-            listItem.innerHTML = `<input type="checkbox" id="service-${index}" data-price="${service.price}">
-                                  <label for="service-${index}">${service.name} - ${service.price} грн</label>`;
-            serviceList.appendChild(listItem);
+    function populateFuelOptions() {
+        fuelData.forEach(fuel => {
+            const option = document.createElement("option");
+            option.value = fuel.type;
+            option.textContent = `${fuel.type} - ${fuel.price} грн/л`;
+            fuelTypeSelect.appendChild(option);
         });
     }
 
-    calculatePriceButton.addEventListener("click", function () {
-        const selectedFuel = fuelTypeSelect.value;
-        const amount = parseFloat(fuelAmountInput.value);
-        if (isNaN(amount) || amount <= 0) {
-            alert("Введіть коректну кількість літрів!");
-            return;
+    document.getElementById("calculateBtn").addEventListener("click", () => {
+        const selectedFuel = fuelData.find(f => f.type === fuelTypeSelect.value);
+        const liters = parseFloat(fuelLitersInput.value);
+        if (selectedFuel && liters > 0) {
+            const totalPrice = (liters * parseFloat(selectedFuel.price)).toFixed(2);
+            totalPriceSpan.textContent = totalPrice;
         }
-        const totalPrice = fuelPrices[selectedFuel] * amount;
-        totalPriceDisplay.textContent = `Вартість: ${totalPrice} грн`;
     });
 
-    addToCartButton.addEventListener("click", function () {
-        const selectedFuel = fuelTypeSelect.options[fuelTypeSelect.selectedIndex].text;
-        const amount = parseFloat(fuelAmountInput.value);
-        const selectedServices = [];
+    addToCartBtn.addEventListener("click", () => {
+        const selectedFuel = fuelData.find(f => f.type === fuelTypeSelect.value);
+        const liters = parseFloat(fuelLitersInput.value);
+        if (selectedFuel && liters > 0) {
+            const totalPrice = (liters * parseFloat(selectedFuel.price)).toFixed(2);
+            cart.push({ type: selectedFuel.type, liters, totalPrice });
+            updateCart();
+        }
+    });
 
-        document.querySelectorAll("input[type=checkbox]:checked").forEach(checkbox => {
-            selectedServices.push({
-                name: checkbox.nextSibling.textContent,
-                price: parseFloat(checkbox.dataset.price)
-            });
+    function updateCart() {
+        cartList.innerHTML = "";
+        let total = 0;
+        cart.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.textContent = `${item.type}: ${item.liters} л - ${item.totalPrice} грн`;
+            const removeBtn = document.createElement("button");
+            removeBtn.textContent = "❌";
+            removeBtn.onclick = () => removeFromCart(index);
+            li.appendChild(removeBtn);
+            cartList.appendChild(li);
+            total += parseFloat(item.totalPrice);
         });
+        cartTotalSpan.textContent = total.toFixed(2);
+    }
 
-        if (isNaN(amount) || amount <= 0) {
-            alert("Введіть коректну кількість літрів!");
-            return;
-        }
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCart();
+    }
 
-        const totalFuelPrice = fuelPrices[fuelTypeSelect.value] * amount;
-        let totalServicePrice = selectedServices.reduce((sum, service) => sum + service.price, 0);
-        let finalPrice = totalFuelPrice + totalServicePrice;
-
-        const cartItem = document.createElement("li");
-        cartItem.textContent = `${selectedFuel}, ${amount} л - ${totalFuelPrice} грн`;
-
-        if (selectedServices.length > 0) {
-            cartItem.textContent += ` (Послуги: ${selectedServices.map(s => s.name).join(", ")} - ${totalServicePrice} грн)`;
-        }
-
-        cartItem.textContent += ` | Загальна сума: ${finalPrice} грн`;
-        cartItemsList.appendChild(cartItem);
+    clearCartBtn.addEventListener("click", () => {
+        cart = [];
+        updateCart();
     });
 
-    updateServiceList();
+    burgerMenu.addEventListener("click", () => {
+        cartContainer.classList.toggle("open");
+    });
 });
