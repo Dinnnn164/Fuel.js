@@ -6,7 +6,6 @@
     <title>Водіям | Вибір пального</title>
     <link rel="stylesheet" href="/drives.css">
     <link rel="stylesheet" href="/styles.css">
-
 </head>
 <body>
 
@@ -37,6 +36,16 @@
             <input type="number" id="fuelLiters" min="1" value="1">
         </div>
 
+        <div class="additional-services">
+            <label for="additionalServices">Оберіть додаткові послуги:</label>
+            <select id="additionalServices">
+                <option value="none">Без додаткових послуг</option>
+                <option value="Мийка">Миття автомобіля - 200 грн</option>
+                <option value="Заміна масла">Заміна масла - 300 грн</option>
+                <option value="Замніа шин">Заміна шин - 800 грн</option>
+            </select>
+        </div>
+
         <button id="calculateBtn">Розрахувати</button>
 
         <div class="fuel-price">
@@ -44,7 +53,6 @@
             <button id="addToCartBtn">Додати до корзини</button>
         </div>
 
-       
     </main>
 
     <div class="burger-menu">
@@ -59,7 +67,6 @@
         <p>Загальна сума: <span id="cartTotal">0.00</span> грн</p>
         <button id="clearCartBtn">Очистити корзину</button>
     </div>
-    
 
     <script src="/modules/drive.js"></script>
 </body>

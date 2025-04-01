@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const clearCartBtn = document.getElementById("clearCartBtn");
     const burgerMenu = document.querySelector(".burger-menu");
     const cartContainer = document.querySelector(".cart-container");
+    const additionalServicesSelect = document.getElementById("additionalServices");
     let fuelData = [];
     let cart = [];
 
@@ -31,28 +32,58 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("calculateBtn").addEventListener("click", () => {
         const selectedFuel = fuelData.find(f => f.type === fuelTypeSelect.value);
         const liters = parseFloat(fuelLitersInput.value);
+        const selectedService = additionalServicesSelect.value;
+        let additionalCost = 0;
+
+        if (selectedService === "Мийка") {
+            additionalCost = 200;
+        } else if (selectedService === "Заміна масла") {
+            additionalCost = 300;
+        } else if (selectedService === "Заміна шин") {
+            additionalCost = 800;
+        }
+
         if (selectedFuel && liters > 0) {
-            const totalPrice = (liters * parseFloat(selectedFuel.price)).toFixed(2);
-            totalPriceSpan.textContent = totalPrice;
+            const fuelCost = liters * parseFloat(selectedFuel.price);
+            const totalCost = (fuelCost + additionalCost).toFixed(2);
+            totalPriceSpan.textContent = totalCost;
         }
     });
 
     addToCartBtn.addEventListener("click", () => {
         const selectedFuel = fuelData.find(f => f.type === fuelTypeSelect.value);
         const liters = parseFloat(fuelLitersInput.value);
+        const selectedService = additionalServicesSelect.value;
+        let additionalCost = 0;
+
+        if (selectedService === "Мийка") {
+            additionalCost = 200;
+        } else if (selectedService === "Заміна масла") {
+            additionalCost = 300;
+        } else if (selectedService === "Заміна шин") {
+            additionalCost = 800;
+        }
+
         if (selectedFuel && liters > 0) {
-            const totalPrice = (liters * parseFloat(selectedFuel.price)).toFixed(2);
-            cart.push({ type: selectedFuel.type, liters, totalPrice });
+            const fuelCost = liters * parseFloat(selectedFuel.price);
+            const totalCost = (fuelCost + additionalCost).toFixed(2);
+            cart.push({ 
+                type: selectedFuel.type, 
+                liters, 
+                totalPrice: totalCost,
+                service: selectedService === "none" ? "Без додаткових послуг" : selectedService
+            });
             updateCart();
         }
     });
 
     function updateCart() {
-        cartList.innerHTML = "";
+        console.log("Оновлюємо кошик...");  
+        cartList.innerHTML = "";  
         let total = 0;
         cart.forEach((item, index) => {
             const li = document.createElement("li");
-            li.textContent = `${item.type}: ${item.liters} л - ${item.totalPrice} грн`;
+            li.textContent = `${item.type}: ${item.liters} л - ${item.totalPrice} грн (${item.service})`;
             const removeBtn = document.createElement("button");
             removeBtn.textContent = "❌";
             removeBtn.onclick = () => removeFromCart(index);
@@ -64,6 +95,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     function removeFromCart(index) {
+        console.log("Видалення товару з кошика...");
         cart.splice(index, 1);
         updateCart();
     }
