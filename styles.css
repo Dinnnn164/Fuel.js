@@ -1,0 +1,176 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: white;
+}
+
+header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 40px;
+    background: black;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo img {
+    width: 100px; 
+    height: 100px;  
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.header-right {
+    display: flex;
+    gap: 15px;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 150px 40px 50px;
+}
+
+.hero-text {
+    max-width: 50%;
+}
+
+.hero h1 {
+    font-size: 60px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.hero h1 span {
+    color: #ffd700;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #ccc;
+}
+
+
+
+.fuel-prices {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+}
+
+.fuel-item {
+    background: #111;
+    padding: 15px 10px; 
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s;
+    min-height: 150px;
+}
+
+.fuel-item h3, 
+.fuel-item p {
+    margin: 5px 0; 
+    line-height: 1.2; 
+}
+
+
+.fuel-item:hover {
+    transform: translateY(-5px);
+}
+
+.diesel-pull { background: #555;  }
+.diesel-euro { background: yellow; color: black; }
+.petrol-95 { background: red;  }
+.petrol-95-euro { background: blue;  }
+.gas { background: green;  }
+.adblue { background: blue; }
+
+/* Гіфка */
+.hero-image {
+    max-width: 40%;  
+    position: relative;
+}
+
+.hero-image img {
+    width: 100%;  
+    height: auto;
+}
+
+/* Футер */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: black;
+    margin-top: 40px;
+}
+
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    opacity: 0;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    animation: fadeInDown 0.8s ease-out forwards;
+}
+
+nav ul li:nth-child(1) a {
+    animation-delay: 0.2s;
+}
+nav ul li:nth-child(2) a {
+    animation-delay: 0.4s;
+}
+nav ul li:nth-child(3) a {
+    animation-delay: 0.6s;
+}
+nav ul li:nth-child(4) a {
+    animation-delay: 0.8s;
+}
+
+/* Анімація */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ефект при наведенні */
+nav ul li a:hover {
+    transform: scale(1.2);
+    background-color: #ffd700; 
+    color: black; 
+    transition: all 0.3s ease-in-out;
+}
+

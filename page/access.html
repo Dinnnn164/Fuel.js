@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вхід для Адміністратора</title>
+    <link rel="stylesheet" href="/access.css">
+
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Вхід для адміністратора</h2>
+        <input type="text" id="username" placeholder="Логін">
+        <input type="password" id="password" placeholder="Пароль">
+        <p id="login-error" style="color: red;"></p>
+        <button onclick="login()">Увійти</button>
+        <a href="index.html">Назад на головну</a>
+    </div>
+
+    <script src="/modules/auth.js"></script>
+
+</body>
+</html>

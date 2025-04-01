@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сторінка водіїв</title>
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="/photo/image.png" alt="D.Energy">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" id="index-link">ГОЛОВНА</a></li>
+                <li><a href="#" id="admin-link">АДМІН</a></li>
+                <li><a href="#">ПРО КОМПАНІЮ</a></li>
+                <li><a href="#">КОНТАКТИ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="fuel-selection">
+            <label for="fuel-type">Оберіть тип пального:</label>
+            <select id="fuel-type">
+                <option value="95">А-95</option>
+                <option value="92">А-92</option>
+                <option value="diesel">Дизель</option>
+                <option value="gas">Газ</option>
+            </select>
+        </section>
+
+        <section class="fuel-calculation">
+            <label for="fuel-amount">Кількість літрів:</label>
+            <input type="number" id="fuel-amount" min="1" value="1">
+            <button id="calculate-price">Розрахувати</button>
+            <p id="total-price">Вартість: 0 грн</p>
+        </section>
+
+        <section class="services">
+            <h2>Додаткові послуги</h2>
+            <ul id="service-list"></ul>
+        </section>
+
+        <button id="add-to-cart">Додати в корзину</button>
+
+        <section class="cart">
+            <h2>Кошик</h2>
+            <ul id="cart-items"></ul>
+        </section>
+    </main>
+
+    <script src="/modules/drive.js"></script>
+    <script src="/modules/script.js"></script>
+
+</body>
+</html>

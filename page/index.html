@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D.Energy | Пальне</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/modal.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="/photo/image.png" alt="D.Energy">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/page/access.html">АДМІН</a></li>
+            <li><a href="#" id="drives-link">ВОДІЯМ</a></li>
+            <li><a href="#">ПРО КОМПАНІЮ</a></li>
+            <li><a href="#">КОНТАКТИ</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div id="login-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Вхід для адміністратора</h2>
+        <input type="text" id="username" placeholder="Ім'я користувача">
+        <input type="password" id="password" placeholder="Пароль">
+        <button id="login-button">Увійти</button>
+        <p id="error-message"></p>
+    </div>
+</div>
+
+<section class="hero">
+    <div class="hero-text">
+        <h1>ТІЛЬКИ ЯКІСНЕ <span>ПАЛЬНЕ</span></h1>
+        <p>На наших АЗК ми заправляємо виключно імпортним пальним з Польщі та Литви стандарту ЄВРО-5.</p>
+    </div>
+    <div class="hero-image">
+        <img src="/photo/Fuel.gif">
+    </div>
+</section>
+
+<section class="fuel-prices">
+    <div class="fuel-item diesel-pull">
+        <h3>ДП</h3>
+        <h4>pulls</h4>
+        <p>60.99 грн/л</p>
+    </div>
+    <div class="fuel-item diesel-euro">
+        <h3>ДП</h3>
+        <h4>ЄВРО</h4>
+        <p>57.99 грн/л</p>
+    </div>
+    <div class="fuel-item petrol-95">
+        <h3>95</h3>
+        <h4>pulls</h4>
+        <p>61.99 грн/л</p>
+    </div>
+    <div class="fuel-item petrol-95-euro">
+        <h3>А95</h3>
+        <h4>ЄВРО</h4>
+        <p>58.99 грн/л</p>
+    </div>
+    <div class="fuel-item gas">
+        <h3>ГАЗ</h3>
+        <h4>ЄВРО</h4>
+        <p>38.49 грн/л</p>
+    </div>
+    <div class="fuel-item adblue">
+        <h3>AdBlue</h3>
+        <h4>ЄВРО</h4>
+        <p>43.90 грн/л</p>
+    </div>
+</section>
+
+<section id="map-section" class="hidden">
+    <h2>КАРТА АЗК</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2594.647752387911!2d27.002835976035303!3d49.4344731599942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473207a946540969%3A0x16451caef4d78188!2z0LLRg9C70LjRhtGPINCX0LDRgNGW0YfQsNC90YHRjNC60LAsIDEwLzQsINCl0LzQtdC70YzQvdC40YbRjNC60LjQuSwg0KXQvNC10LvRjNC90LjRhtGM0LrQsCDQvtCx0LvQsNGB0YLRjCwgMjkwMDA!5e0!3m2!1suk!2sua!4v1743250089898!5m2!1suk!2sua" 
+    width="1500" 
+    height="450" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+
+<footer>
+    <p>© 2025 D.Energy. Усі права захищені.</p>
+</footer>
+
+<script src="/modules/auth.js"></script>
+<script src="/modules/script.js"></script>
+
+</body>
+</html>
